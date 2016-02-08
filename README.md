@@ -8,6 +8,16 @@ only requirement is the `requests` package.
 
 **Please note** that `p24` is just a thin wrapper around the API and it
 **does not** validate any of the input data.
+
+## Installation
+
+```
+pip install p24
+```
+
+## Usage
+
+Please read the code, as it's clear enough and the API is very simple.
  
 ## Further development
 I wrote `p24` because I need it in my private projects, therefore it will be
