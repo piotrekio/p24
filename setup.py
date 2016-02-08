@@ -4,7 +4,7 @@ from distutils.core import setup
 setup(
     name = 'p24',
     version = '0.1',
-    description = 'Set of for utilizing Przelewy24 API',
+    description = 'Set of tools for utilizing Przelewy24 API',
     author = 'Piotr Wasilewski',
     author_email = 'piotrek@piotrek.io',
     url = 'https://github.com/piotrekio/p24',
