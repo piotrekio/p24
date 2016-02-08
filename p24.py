@@ -1,7 +1,7 @@
 """
 Set of tools for utilizing Przelewy24 API.
 
-Version: 0.1
+Version: 0.2
 Author: Piotr Wasilewski <piotrek@piotrek.io>
 
 
@@ -34,7 +34,7 @@ import hashlib
 import requests
 
 
-VERSION = (0, 1)
+VERSION = (0, 2)
 
 
 API_VERSION = '3.2'

@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name = 'p24',
-    version = '0.1',
+    version = '0.2',
     description = 'Set of tools for utilizing Przelewy24 API',
     author = 'Piotr Wasilewski',
     author_email = 'piotrek@piotrek.io',
