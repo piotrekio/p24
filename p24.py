@@ -211,3 +211,24 @@ def transaction_register(config, transaction):
     http_response = requests.post(url, data)
     p24_response = P24Response(http_response)
     return p24_response
+
+
+def transaction_verify(config, transaction, order_id):
+    url = get_url(config, 'trnVerify')
+    data = {
+        'p24_merchant_id': config.merchant_id,
+        'p24_pos_id': config.pos_id,
+        'p24_session_id': transaction.session_id,
+        'p24_amount': transaction.amount,
+        'p24_currency': transaction.currency,
+        'p24_order_id': order_id,
+        'p24_sign': get_sign(
+            transaction.session_id,
+            config.merchant_id,
+            transaction.amount,
+            transaction.currency,
+            config.crc),
+    }
+    http_response = requests.post(url, data)
+    p24_response = P24Response(http_response)
+    return p24_response
