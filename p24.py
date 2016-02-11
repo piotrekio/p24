@@ -1,7 +1,7 @@
 """
 Set of tools for utilizing Przelewy24 API.
 
-Version: 0.3
+Version: 0.4
 Author: Piotr Wasilewski <piotrek@piotrek.io>
 
 
@@ -34,7 +34,7 @@ import hashlib
 import requests
 
 
-VERSION = (0, 3)
+VERSION = (0, 4)
 
 
 API_VERSION = '3.2'
@@ -136,7 +136,10 @@ class P24Response:
     def __init__(self, http_response):
         self._http_response = http_response
 
-        content = http_response.content.decode()
+        try:
+            content = http_response.content.decode()
+        except UnicodeDecodeError:
+            content = http_response.content.decode('windows-1250')
         data = {}
         for kv in content.split('&'):
             key, value = kv.split('=')
@@ -219,13 +222,13 @@ def transaction_verify(config, transaction, order_id):
         'p24_merchant_id': config.merchant_id,
         'p24_pos_id': config.pos_id,
         'p24_session_id': transaction.session_id,
-        'p24_amount': transaction.amount,
+        'p24_amount': get_amount(transaction.amount),
         'p24_currency': transaction.currency,
         'p24_order_id': order_id,
         'p24_sign': get_sign(
             transaction.session_id,
             config.merchant_id,
-            transaction.amount,
+            get_amount(transaction.amount),
             transaction.currency,
             config.crc),
     }
